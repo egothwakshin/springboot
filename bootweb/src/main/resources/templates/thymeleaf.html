@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 부가사용 방법</title>
+</head>
+<body>
+<!-- th:with = jstl set 형태와 동일 -->
+<div th:with="data1='홍길동',data2='강감찬'">
+<ul>
+<li th:text="${data1}"></li>
+<li>[[${data2}]]</li>
+</ul>
+</div>
+<!-- with에서 셋팅된 가상의 변수를 each, if 모두 활용이 가능함 -->
+<span th:with="startno=1,endno=10">
+<ul th:each="n : ${#numbers.sequence(startno,endno)}">
+<li>[[${n}]]</li>
+</ul>
+</span>
+<!-- 
+	T: type을 설정할 때 사용 (라이브러리 클래스를 호출)
+	예시)	T(kr.co.lee.web).클래스명
+	max(a,b): 최대값, min(a,b):최소값
+-->
+<em th:with="maxno=${T(java.lang.Math).max(88,77)}">
+<span th:text=${maxno}></span>
+</em>
+<br>
+
+<!-- 
+	format 형태 구조
+	formatInteger: 반올림 구조(소수)
+-->
+<span th:text="${#numbers.formatInteger(1.1,0)}"></span><br>
+<span th:text="${#numbers.formatDecimal(15000,1,1,'COMMA')}"></span><br>
+
+<!-- 
+	formatDecimal (데이터값 최소 정수 자릿수, 최소 소수자릿수
+	'COMMA' : . 대신 ,로 표기
+	  -->
+<span th:text="${#numbers.formatDecimal(12.7,3,2)}"></span><br>
+<span th:text="${#numbers.formatDecimal(12.7,3,2,'COMMA')}"></span><br>
+
+</body>
+</html>

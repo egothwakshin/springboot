@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>샘플 웹 페이지</title>
+<!-- th:fragment = 가상의 이름 {영역처리 담당 thymeleaf 속성} -->
+<style th:fragment="styles">
+.top{
+width:100%;
+height:100px;
+background-color: darkblue;
+color:white;
+font-size: 12px;
+display: flex;
+flex-direction: row;
+align-items: center;
+flex-wrap: nowrap;
+}
+.top>span{
+display: block;
+width: 100%;
+text-align: center;
+}
+.copy{
+width: 100%;
+height: 150px;
+background-color: black;
+color: white;
+font-size: 12px;
+display: flex;
+flex-direction: row;
+align-items: center;
+flex-wrap: nowrap;
+}
+.copy>span{
+display: block;
+width: 100%;
+text-align: center;
+}
+</style>
+</head>
+<body>
+<header class="top" th:fragment="top">
+<span>회사소개</span>
+<span>상품소개</span>
+<span>공지사항</span>
+<span>고객센터</span>
+</header>
+<!-- 
+thymeleaf에서 적용되는 값을 받아서  핸들링하는 코드
+인자값을 받아서 출력하는 역할
+-->
+<section th:fragment="main(data,data2)">
+<span th:text="${data}"></span>
+<span th:text="${data2}"></span>
+</section>
+<!-- 배열 인자값을 받아서 처리하여 출력하는 형태 -->
+<section th:fragment="md(list_product)">
+<ul th:each="pd: ${list_product}">
+<li th:text="${pd.key}"></li>
+<li th:text="${pd.value}"></li>
+</ul>
+</section>
+
+<footer class="copy" th:fragment="bottom">
+<span th:text="${copyright}"></span>
+</footer>
+</body>
+</html>

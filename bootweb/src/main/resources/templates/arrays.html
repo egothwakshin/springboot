@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf 다차원 배열 출력 방법</title>
+</head>
+<body>
+<!-- 2.x : 태그에 변수 표현식으로 출력 -->
+<div>데이터 그룹 개수 : <span th:text="${arr.length}"></span> </div>
+<br>
+<!-- 3.x : 상수형태의 표현식으로 출력 ex)데이터그룹개수(상수) -->
+<div th:text="|데이터 그룹 개수 : ${arr.length}|"></div>
+<ul th:each="minfo,node:${arr}">
+<!--  <li th:text="${node}"></li> -->
+<li th:text="${arr[node.index][0]}"></li>
+<li th:text="${arr[node.index][1]}"></li>
+</ul>
+<br><br><br>
+<!-- class 2차배열 형태로 출력하는 방식 -->
+<p th:text="|클래스 배열의 그룹 개수 : ${all.size}|"></p>
+<p th:text="|클래스 배열의 데이터 개수 : ${all[0].size}|"></p>
+<br><br><br>
+<!-- Stat 를 이용하여 node의 번호를 기점으로 배열값을 출력 -->
+
+
+<dl th:each="area,node:${all[0]}">
+<dt>지사명 : <em th:text="${area}"></em></dt>
+<dd>인원수 : <kbd th:text="${all[1][node.index]}"></kbd></dd>
+</dl>
+
+
+
+</body>
+</html>

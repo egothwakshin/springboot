@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 메인화면</title>
+<!-- th:replace (기존태그 삭제 후 로드) : thymeleaf 영역(fragment)을 가져오는 속성 ~ {경로::fragment이름} -->
+<style th:replace="~{/sample.html::styles}"></style>
+</head>
+<body>
+<!-- th:insert (기존태그 삭제하지 않고 로드) : thymeleaf 3.X 속성 -->
+<form th:insert="~{/sample.html::top}" method="post">
+</form>
+<!-- fragment에 인자값을 적용하여 로드하는 방식 -->
+<section th:replace="~{/sample.html::main('메인화면 상품출력','AD 배너')}">
+
+</section>
+
+<!-- Controller에서 받은 배열을 인자값으로 전송 -->
+<section th:replace="~{/sample.html::md(${mdlist})}">
+</section>
+
+<footer th:insert="~{/sample.html::bottom}"></footer>
+</body>
+</html>

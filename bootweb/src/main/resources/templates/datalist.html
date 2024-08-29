@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- 타임리프 사용시 JSP, JSTL 사용하지 않음 -->
+<!-- xmlns:th : 타임리프를 명시하는 속성값 -->
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 사용법 1</title>
+</head>
+<body>
+<!-- select tyhmeleaf -->
+<select>
+<option value="이메일" th:selected="${chart eq '이메일'}">이메일</option>
+<option value="이름" th:selected="${chart eq '이름'}">이름</option>
+<option value="제목" th:selected="${chart eq '제목'}">제목</option>
+</select>
+<br><br><br><br>
+
+
+
+<!-- tyhmeleaf 조건문 -->
+<div th:if=${agree=='Y'} th:text="${agree}"></div>
+<div th:if=${agree=='N'}>동의안함</div>
+<br><br><br><br>
+<input type="radio" name="agree" value="Y" th:checked="${agree eq 'Y'}">동의함
+<input type="radio" name="agree" value="N" th:checked="${agree eq 'N'}">동의안함
+<br><br><br><br>
+
+테스트 페이지~~<br><br>
+<p th:text="${user}"></p>
+<!-- 
+	th:text => 데이터 출력
+	th:each => 배열을 출력시키는 반복문
+-->
+<ul th:each="data:${all}">	<!--  data:가상변수, ${all} 배열 -->
+<li th:text="${data}"></li>
+<li th:text="${dataStat.size}"></li> <!-- 가상변수명Stat.키배열명: 노드,갯수,데이터 -->
+</ul>
+<br><br><br><br>
+
+
+<ul th:each="data,list :${all}">
+<li th:text="${list.index}"></li>
+<li th:text="${list}"></li>
+</ul>
+<br><br><br><br>
+<!-- key배열(map) => key,value 속성을 이용하여 출력하는 형태 -->
+<ol th:each="userinfo:${member}"> 
+<li th:text="${userinfo.key}"></li>
+<li th:text="${userinfo.value}"></li>
+</ol>
+
+<!-- dao 값을 이용허여 출력하는 형태 : dao에 선언한 변수명으로 출력-->
+<ul th:each="datadao : ${da}">
+<li th:text="${datadao.uidx}"></li>
+<li th:text="${datadao.uname}"></li>
+<li th:text="${datadao.uemail}"></li>
+</ul>
+
+</body>
+</html>

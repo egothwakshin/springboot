@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : Java interface @Mapper명 -->
+<mapper namespace="kr.co.lee.couponRepository">
+
+<select id="getAllcoupon" resultType="kr.co.lee.coupon_dao">
+	select * from coupon order by cidx desc
+</select>
+
+<insert id="incoupon" >
+	insert into coupon values ('0',#{cpname},#{cprate},#{cpuse},#{cpdate},now())
+</insert>
+
+<delete id="delcoupon">
+	delete from coupon where cidx=#{cidx}
+</delete>
+
+</mapper>
